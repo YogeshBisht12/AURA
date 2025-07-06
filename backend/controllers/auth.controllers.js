@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import genToken from "../config/token.js";
 import User from "../models/user.model.js"
-import bcyrpt from "bcryptjs"
+
 
 
 export const signUp = async (req,res) => {
@@ -16,7 +16,7 @@ export const signUp = async (req,res) => {
             return res.status(400).json({message:"password must be atleast 6 characters!"})
         }
 
-        const hashedPassword = await bcyrpt.hash(password,10);
+        const hashedPassword = await bcrypt.hash(password,10);
 
         const user = await User.create({
             name,password:hashedPassword,email
@@ -38,7 +38,7 @@ export const signUp = async (req,res) => {
     }
 }
 
-export const login = async (req,res) => {
+export const signIn = async (req,res) => {
     try {
         const {email,password} = req.body;
 
@@ -46,7 +46,7 @@ export const login = async (req,res) => {
         if(!user){
             return res.status(400).json({message:"email does not exists!"});
         }
-        const isMatch = await bcrypt.compare(password.user.password);
+        const isMatch = await bcrypt.compare(password,user.password);
 
         if(!isMatch){
             return res.status(400).json({message:"incorrect password!"});
