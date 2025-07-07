@@ -213,7 +213,7 @@ const Home = () => {
             recognition.stop();
             setListening(false);
             isRecognizingRef.current = false;
-            clearInterval(fallback);
+            
         }
     },[])
 
@@ -233,9 +233,9 @@ return (
                 ))}
         </div>
         </div>
-        <button className='min-w-[150px] h-[50px] bg-white rounded-full cursor-pointer text-black font-semibold hidden lg:block text-[19px] mt-[10px] absolute top-[20px] right-[20px]' onClick={handleLogout}> Log Out</button>
-        <button className='min-w-[150px] h-[50px] bg-white rounded-full cursor-pointer text-black font-semibold  hidden lg:block text-[19px] px-[20px] py-[10px] mt-[10px] absolute top-[100px] right-[20px]' onClick={()=>navigate("/customize")}>Customize your Assistant</button>
-        <div className='w-[300px] h-[400px] flex justify-center items-center overflow-hidden rounded-4xl shadow-lg'>
+        <button className='min-w-[150px] h-[50px] bg-white rounded-full cursor-pointer text-black font-semibold hidden lg:block text-[19px] mt-[10px] absolute top-[20px] right-[20px] hover:bg-purple-900 hover:text-white' onClick={handleLogout}> Log Out</button>
+        <button className='min-w-[150px] h-[50px] bg-white rounded-full cursor-pointer text-black font-semibold  hidden lg:block text-[19px] px-[20px] py-[10px] mt-[10px] absolute top-[100px] right-[20px] hover:bg-purple-900 hover:text-white' onClick={()=>navigate("/customize")}>Customize your Assistant</button>
+        <div className='w-[300px] h-[400px] flex justify-center items-center overflow-hidden rounded-4xl shadow-lg'> 
             <img src={userData?.assistantImage} alt="" className='h-full object-cover' />
         </div>
         <h1 className='text-white text-[18px] font-semibold'>I'm {userData?.assistantName}</h1>
