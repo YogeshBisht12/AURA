@@ -4,7 +4,7 @@ import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { userDataContext } from '../context/userContext';
+import { userDataContext } from '../context/UserContext';
 import toast from 'react-hot-toast';
 
 function SignUp  ()  {
