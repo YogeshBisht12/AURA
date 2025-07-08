@@ -12,7 +12,7 @@ const app = express();
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://aura-e8zo.vercel.app"
+        "https://aura-8cam0g6fn-yogeshbisht12s-projects.vercel.app/"
     ],
     credentials: true
 }));
