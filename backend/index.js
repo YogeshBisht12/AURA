@@ -10,7 +10,7 @@ import geminiResponse from "./gemini.js";
 
 const app = express();
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"aura-8cam0g6fn-yogeshbisht12s-projects.vercel.app",
     credentials:true
 }));
 const port = process.env.PORT || 5000;
