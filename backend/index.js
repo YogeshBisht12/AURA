@@ -10,7 +10,7 @@ import geminiResponse from "./gemini.js";
 
 const app = express();
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:["http://localhost:5173","https://resilient-sprinkles-102a58.netlify.app/"],
     credentials:true
 }));
 const port = process.env.PORT || 5000;
