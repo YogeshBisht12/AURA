@@ -159,25 +159,31 @@ const Home = () => {
         };
 
         recognition.onerror = (event) => {
-            console.warn("Recognition error:", event.error);
-            isRecognizingRef.current = false;
-            setListening(false);
-            if (event.error !== "aborted" && isMounted && !isSpeakingRef.current) {
-                setTimeout(() => {
-                    if (isMounted) {
-                        try {
-                            recognition.start();
-                            console.log("Recognition restarted after error");
+  console.warn("Recognition error:", event.error);
+  isRecognizingRef.current = false;
+  setListening(false);
 
-                        } catch (e) {
-                            if (e.name !== "InvalidStateError")
-                                console.error(e);
+  // 🛑 Stop retrying on fatal errors
+  const fatalErrors = ["not-allowed", "service-not-allowed", "network"];
 
-                        }
-                    }
-                }, 1000);
-            }
-        };
+  if (fatalErrors.includes(event.error)) {
+    alert(`Speech recognition error: ${event.error}. Please allow mic access and ensure you're online.`);
+    return; // ❌ Don't restart
+  }
+
+  // ✅ Retry after delay if safe
+  if (isMounted && !isSpeakingRef.current) {
+    setTimeout(() => {
+      try {
+        recognition.start();
+        console.log("Recognition restarted after recoverable error");
+      } catch (e) {
+        if (e.name !== "InvalidStateError") console.error(e);
+      }
+    }, 1000);
+  }
+};
+
 
 
         recognition.onresult = async (e) => {
