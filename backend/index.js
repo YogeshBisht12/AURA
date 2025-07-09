@@ -10,12 +10,15 @@ import geminiResponse from "./gemini.js";
 
 const app = express();
 const allowedOrigins = [
-  process.env.CLIENT_URL
+  "http://localhost:5173", // for local dev
+  "https://https://aura-flame-ten.vercel.app", // your deployed frontend
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow requests with no origin (e.g., curl, Postman, or server-side)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -23,6 +26,7 @@ app.use(cors({
   },
   credentials: true
 }));
+
 
 const port = process.env.PORT || 5000;
 app.use(express.json());
