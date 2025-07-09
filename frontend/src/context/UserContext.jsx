@@ -4,7 +4,7 @@ import axios from 'axios';
 export const userDataContext = createContext();
 
 function UserContext({ children }) {
-const serverUrl = "https://aura-cqcr.vercel.app/";
+const serverUrl = "https://aura-m1qs.vercel.app";
 const [userData,setUserData] = useState(null);
 const [frontendImage,setFrontendImage] = useState(null);
 const [backendImage,setBackendImage] = useState(null);
